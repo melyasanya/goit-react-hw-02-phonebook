@@ -8,28 +8,25 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: '',
-    name: '',
-    number: '',
   };
-  getName = e => {
+
+  getFilterInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  getContact = e => {
+  addContact = (e, name, number) => {
     e.preventDefault();
 
     const newUser = {
-      name: this.state.name,
-      number: this.state.number,
+      name,
+      number,
       id: nanoid(),
     };
     const names = [];
     this.state.contacts.map(el => names.push(el.name));
-    names.includes(this.state.name)
-      ? alert('lol')
+    names.includes(name)
+      ? alert(`${name} is already in contacts`)
       : this.setState(prev => ({
           contacts: [...prev.contacts, newUser],
-          name: '',
-          number: '',
         }));
   };
 
@@ -50,14 +47,12 @@ export class App extends Component {
     return (
       <>
         <h1>Phonebook</h1>
-        <InputForm
-          getName={this.getName}
-          name={this.state.name}
-          getContact={this.getContact}
-          number={this.state.number}
-        />
+        <InputForm addContact={this.addContact} />
         <h1>Contacts</h1>
-        <Filter getName={this.getName} filter={this.state.filter} />
+        <Filter
+          getFilterInput={this.getFilterInput}
+          filter={this.state.filter}
+        />
         {this.state.contacts.length > 0 && (
           <Contacts
             contacts={this.filterNames()}

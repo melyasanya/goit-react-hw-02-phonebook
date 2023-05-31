@@ -1,4 +1,5 @@
 import { Contact } from 'components/Contact/Contact';
+import PropTypes from 'prop-types';
 
 export const Contacts = ({ contacts, handleDelete }) => {
   return (
@@ -16,4 +17,9 @@ export const Contacts = ({ contacts, handleDelete }) => {
       })}
     </ul>
   );
+};
+
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object),
+  handleDelete: PropTypes.func,
 };

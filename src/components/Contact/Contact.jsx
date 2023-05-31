@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Contact = ({ name, id, number, handleDelete }) => {
   return (
     <li style={{ display: 'flex', alignItems: 'center' }}>
@@ -12,4 +14,11 @@ export const Contact = ({ name, id, number, handleDelete }) => {
       </button>
     </li>
   );
+};
+
+Contact.propTypes = {
+  name: PropTypes.string,
+  id: PropTypes.string,
+  number: PropTypes.string,
+  handleDelete: PropTypes.func,
 };
