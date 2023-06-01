@@ -7,9 +7,7 @@ export const Filter = ({ getFilterInput, filter }) => {
       <input
         type="text"
         name="filter"
-        onChange={e => {
-          getFilterInput(e);
-        }}
+        onChange={getFilterInput}
         value={filter}
       />
     </>

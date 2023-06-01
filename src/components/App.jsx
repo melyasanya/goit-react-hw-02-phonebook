@@ -13,17 +13,15 @@ export class App extends Component {
   getFilterInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  addContact = (e, name, number) => {
-    e.preventDefault();
-
+  addContact = (name, number) => {
     const newUser = {
       name,
       number,
       id: nanoid(),
     };
-    const names = [];
-    this.state.contacts.map(el => names.push(el.name));
-    names.includes(name)
+
+    const isFound = this.state.contacts.find(el => el.name === name);
+    isFound
       ? alert(`${name} is already in contacts`)
       : this.setState(prev => ({
           contacts: [...prev.contacts, newUser],

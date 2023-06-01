@@ -8,6 +8,12 @@ export class InputForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.addContact(this.state.name, this.state.number);
+    this.setState({ name: '', number: '' });
+  };
+
   render() {
     return (
       <form
@@ -20,10 +26,7 @@ export class InputForm extends Component {
           padding: '12px',
           border: 'solid 1px',
         }}
-        onSubmit={e => {
-          this.props.addContact(e, this.state.name, this.state.number);
-          this.setState({ name: '', number: '' });
-        }}
+        onSubmit={this.onSubmit}
       >
         <h3>Name</h3>
         <label htmlFor="name">
